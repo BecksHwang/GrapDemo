@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+ 
+  	<!-- 引入jedis配置文件 -->
+    <context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true" />
+   
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+    	<!-- 控制一个pool可分配多少个jedis实例，通过pool.getResource()来获取；
+		            如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)。-->
+		<property name="maxTotal" value="${redis.pool.maxActive}"/>
+        <!-- 控制一个pool最多有多少个状态为idle(空闲的)的jedis实例。 -->
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <!-- 表示当borrow(引入)一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException；-->
+        <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}"/>
+        <!-- 在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的； -->
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+    </bean>
+   
+    <bean id="shardedJedisPool1" class="redis.clients.jedis.ShardedJedisPool" scope="singleton">
+	<constructor-arg index="0" ref="jedisPoolConfig" />
+	<constructor-arg index="1">
+		<list>
+			<bean class="redis.clients.jedis.JedisShardInfo">
+				<constructor-arg name="host" value="${redis1.host}" />
+				<constructor-arg name="port" value="${redis1.port}" />
+				<constructor-arg name="timeout" value="${redis1.timeout}" />
+			</bean>
+		</list>
+	</constructor-arg>
+	</bean>
+    
+    <bean id="shardedJedisPool2" class="redis.clients.jedis.ShardedJedisPool"  scope="singleton">
+        <constructor-arg index="0" ref="jedisPoolConfig" />
+        <constructor-arg index="1">
+            <list>
+                <bean class="redis.clients.jedis.JedisShardInfo">
+                	<!-- 高级host方式url,带密码，DB，除了此方式还可重写 JedisShardInfo构造方法-->
+					<constructor-arg name="host" value="${redis2.url}" />
+				</bean>
+            </list>
+        </constructor-arg>
+    </bean>
+    
+</beans>

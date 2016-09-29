@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.becks.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.becks.entity.User">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="age" property="age" />
+	</resultMap>
+
+	<sql id="All_Column_List">
+		id, name, age
+	</sql>
+
+	<insert id="insert" parameterType="com.becks.entity.User"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="age != null">
+				age,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="name != null">
+				#{name},
+			</if>
+			<if test="age != null">
+				#{age},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="delete" parameterType="java.lang.Integer">
+		delete from user <where>id = #{id}</where>
+	</update>
+	
+	<update id="update" parameterType="com.becks.entity.User">
+		update user 
+		<set>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="age != null">
+				age = #{age},
+			</if>
+		</set>
+		<where>id = #{id}</where>
+	</update>
+	
+	<select id="getUserById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="All_Column_List" />
+		from user
+		<where> id = #{id}</where>
+	</select>
+	
+	<select id="getUserAll" resultMap="BaseResultMap" >
+		select
+		<include refid="All_Column_List" />
+		from user
+	</select>
+	
+	<sql id="sqlOfPage">
+		<where>
+			<if test="id != null">and id = #{id}</if>
+			<if test="name != null">and name = #{name}</if>
+			<if test="age != null">and age = #{age}</if>
+			<if test="beginDate != null"><![CDATA[and #{beginDate} <= created_date]]></if>
+			<if test="endDate != null"><![CDATA[and created_date <= #{endDate}]]></if>
+		</where>
+	</sql>
+	<!-- <select id="countPage" resultType="Integer">
+		select count(*) from user
+		<include refid="sqlOfPage" />
+	</select>
+	<select id="queryPage" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="All_Column_List" />
+		from user
+		<include refid="sqlOfPage" />
+		<choose>
+			<when test="orderBy != null and order != null">
+				order by ${orderBy} ${order}, id ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		limit ${startIndex}, ${pageSize}
+	</select> -->
+	
+	<sql id="sqlOfPrevPage">
+		<where>
+			status = 1 and <![CDATA[id < #{offsetId}]]>
+			<if test="objectId != null">and object_id = #{objectId}</if>
+			<if test="objectType != null">and object_type = #{objectType}</if>
+		</where>
+	</sql>
+	<!-- <select id="countPrevPage" resultType="Integer">
+		select count(*) from user
+		<include refid="sqlOfPrevPage" />
+	</select>
+	<select id="queryPrevPage" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="All_Column_List" />
+		from user
+		<include refid="sqlOfPrevPage" />
+		<choose>
+			<when test="orderBy != null and order != null">
+				order by ${orderBy} ${order}, id ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		limit ${startIndex}, ${pageSize}
+	</select> -->
+	
+	<sql id="sqlOfNextPage">
+		<where>
+			status = 1 and <![CDATA[id > #{offsetId}]]>
+			<if test="objectId != null">and object_id = #{objectId}</if>
+			<if test="objectType != null">and object_type = #{objectType}</if>
+		</where>
+	</sql>
+	<!-- <select id="countNextPage" resultType="Integer">
+		select count(*) from user
+		<include refid="sqlOfNextPage" />
+	</select>
+	<select id="queryNextPage" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="All_Column_List" />
+		from user
+		<include refid="sqlOfNextPage" />
+		<choose>
+			<when test="orderBy != null and order != null">
+				order by ${orderBy} ${order}, id ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		limit ${startIndex}, ${pageSize}
+	</select> -->
+	
+</mapper>
