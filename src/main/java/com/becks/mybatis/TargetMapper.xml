@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.becks.mapper.TargetMapper">
+	<resultMap id="BaseResultMap" type="com.becks.entity.Target">
+		<result column="ID" property="id" />
+		<result column="MissionID" property="missionId" />
+		<result column="Type" property="type" />
+		<result column="Name" property="name" />
+		<result column="Url" property="url" />
+		<result column="First" property="first" />
+		<result column="Last" property="last" />
+		<result column="Step" property="step" />
+		<result column="Sequence" property="sequence" />
+		<result column="StartTag" property="startTag" />
+		<result column="EndTag" property="endTag" />
+		<result column="MD5" property="md5" />
+		<result column="UseKeywordsFilter" property="useKeywordsFilter" />
+		<result column="ColumnID" property="column" />
+		<result column="Monitored" property="monitored" />
+	</resultMap>
+
+	<sql id="All_Column_List">
+		ID, MissionID, Type, Name, Url, First, Last, Step,
+		Sequence, StartTag, EndTag, MD5,UseKeywordsFilter ,ColumnID ,
+		Monitored
+	</sql>
+
+	<insert id="insert" parameterType="com.becks.entity.Target"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into target
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">ID,</if>
+			<if test="missionId != null">MissionID,</if>
+			<if test="type != null">Type,</if>
+			<if test="name != null">Name,</if>
+			<if test="url != null">Url,</if>
+			<if test="first != null">First,</if>
+			<if test="last != null">Last,</if>
+			<if test="step != null">Step,</if>
+			<if test="sequence != null">Sequence,</if>
+			<if test="startTag != null">StartTag,</if>
+			<if test="endTag != null">EndTag,</if>
+			<if test="md5 != null">MD5,</if>
+			<if test="useKeywordsFilter != null">UseKeywordsFilter,</if>
+			<if test="column != null">ColumnId,</if>
+			<if test="monitored != null">Monitored</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">#{id},</if>
+			<if test="missionId != null">#{missionId},</if>
+			<if test="type != null">#{type},</if>
+			<if test="name != null">#{name},</if>
+			<if test="url != null">#{url},</if>
+			<if test="first != null">#{first},</if>
+			<if test="last != null">#{last},</if>
+			<if test="step != null">#{step},</if>
+			<if test="sequence != null">#{sequence},</if>
+			<if test="startTag != null">#{startTag},</if>
+			<if test="endTag != null">#{endTag},</if>
+			<if test="md5 != null">#{md5},</if>
+			<if test="useKeywordsFilter != null">#{useKeywordsFilter},</if>
+			<if test="column != null">#{column},</if>
+			<if test="monitored != null">#{monitored}</if>
+		</trim>
+	</insert>
+
+	<update id="delete" parameterType="java.lang.Integer">
+		delete from target
+		<where>id = #{id}</where>
+	</update>
+
+	<update id="update" parameterType="com.becks.entity.Target">
+		update target
+		<set>
+			<if test="missionId != null">MissionId = #{missionId},</if>
+			<if test="type != null">Type = #{type},</if>
+			<if test="name != null">Name = #{name},</if>
+			<if test="url != null">Url = #{url},</if>
+			<if test="first != null">First = #{first},</if>
+			<if test="last != null">Last = #{last},</if>
+			<if test="step != null">Step = #{step},</if>
+			<if test="sequence != null">Sequence = #{sequence},</if>
+			<if test="startTag != null">StartTag = #{startTag},</if>
+			<if test="endTag != null">EndTag = #{endTag},</if>
+			<if test="md5 != null">MD5 = #{md5},</if>
+			<if test="useKeywordsFilter != null">UseKeywordsFilter = #{useKeywordsFilter},</if>
+			<if test="column != null">ColumnId = #{column},</if>
+			<if test="monitored != null">Monitored = #{monitored}</if>
+		</set>
+		<where>ID = #{id}</where>
+	</update>
+
+	<select id="getTargetById" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="All_Column_List" />
+		from target
+		<where> ID = #{id}</where>
+	</select>
+
+	<select id="getTargetAll" resultMap="BaseResultMap">
+		select
+		<include refid="All_Column_List" />
+		from target
+	</select>
+
+	<sql id="sqlOfPage">
+		<where>
+			<if test="id != null">and id = #{id}</if>
+			<if test="name != null">and name = #{name}</if>
+			<if test="age != null">and age = #{age}</if>
+			<if test="beginDate != null"><![CDATA[and #{beginDate} <= created_date]]></if>
+			<if test="endDate != null"><![CDATA[and created_date <= #{endDate}]]></if>
+		</where>
+	</sql>
+	<!-- <select id="countPage" resultType="Integer"> select count(*) from user 
+		<include refid="sqlOfPage" /> </select> <select id="queryPage" resultMap="BaseResultMap" 
+		parameterType="map"> select <include refid="All_Column_List" /> from user 
+		<include refid="sqlOfPage" /> <choose> <when test="orderBy != null and order 
+		!= null"> order by ${orderBy} ${order}, id ${order} </when> <otherwise> order 
+		by id desc </otherwise> </choose> limit ${startIndex}, ${pageSize} </select> -->
+
+	<sql id="sqlOfPrevPage">
+		<where>
+			status = 1 and <![CDATA[id < #{offsetId}]]>
+			<if test="objectId != null">and object_id = #{objectId}</if>
+			<if test="objectType != null">and object_type = #{objectType}</if>
+		</where>
+	</sql>
+	<!-- <select id="countPrevPage" resultType="Integer"> select count(*) from 
+		user <include refid="sqlOfPrevPage" /> </select> <select id="queryPrevPage" 
+		resultMap="BaseResultMap" parameterType="map"> select <include refid="All_Column_List" 
+		/> from user <include refid="sqlOfPrevPage" /> <choose> <when test="orderBy 
+		!= null and order != null"> order by ${orderBy} ${order}, id ${order} </when> 
+		<otherwise> order by id desc </otherwise> </choose> limit ${startIndex}, 
+		${pageSize} </select> -->
+
+	<sql id="sqlOfNextPage">
+		<where>
+			status = 1 and <![CDATA[id > #{offsetId}]]>
+			<if test="objectId != null">and object_id = #{objectId}</if>
+			<if test="objectType != null">and object_type = #{objectType}</if>
+		</where>
+	</sql>
+	<!-- <select id="countNextPage" resultType="Integer"> select count(*) from 
+		user <include refid="sqlOfNextPage" /> </select> <select id="queryNextPage" 
+		resultMap="BaseResultMap" parameterType="map"> select <include refid="All_Column_List" 
+		/> from user <include refid="sqlOfNextPage" /> <choose> <when test="orderBy 
+		!= null and order != null"> order by ${orderBy} ${order}, id ${order} </when> 
+		<otherwise> order by id desc </otherwise> </choose> limit ${startIndex}, 
+		${pageSize} </select> -->
+
+</mapper>
