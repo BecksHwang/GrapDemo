@@ -2,26 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.becks.mapper.TargetMapper">
 	<resultMap id="BaseResultMap" type="com.becks.entity.Target">
-		<result column="ID" property="id" />
-		<result column="MissionID" property="missionId" />
-		<result column="Type" property="type" />
-		<result column="Name" property="name" />
-		<result column="Url" property="url" />
-		<result column="First" property="first" />
-		<result column="Last" property="last" />
-		<result column="Step" property="step" />
-		<result column="Sequence" property="sequence" />
-		<result column="StartTag" property="startTag" />
-		<result column="EndTag" property="endTag" />
-		<result column="MD5" property="md5" />
-		<result column="UseKeywordsFilter" property="useKeywordsFilter" />
-		<result column="ColumnID" property="column" />
-		<result column="Monitored" property="monitored" />
+		<result columnId="ID" property="id" />
+		<result columnId="MissionID" property="missionId" />
+		<result columnId="Type" property="type" />
+		<result columnId="Name" property="name" />
+		<result columnId="Url" property="url" />
+		<result columnId="First" property="first" />
+		<result columnId="Last" property="last" />
+		<result columnId="Step" property="step" />
+		<result columnId="Sequence" property="sequence" />
+		<result columnId="StartTag" property="startTag" />
+		<result columnId="EndTag" property="endTag" />
+		<result columnId="MD5" property="md5" />
+		<result columnId="UseKeywordsFilter" property="useKeywordsFilter" />
+		<result columnId="Monitored" property="monitored" />
 	</resultMap>
 
 	<sql id="All_Column_List">
 		ID, MissionID, Type, Name, Url, First, Last, Step,
-		Sequence, StartTag, EndTag, MD5,UseKeywordsFilter ,ColumnID ,
+		Sequence, StartTag, EndTag, MD5,UseKeywordsFilter ,
 		Monitored
 	</sql>
 
@@ -42,7 +41,6 @@
 			<if test="endTag != null">EndTag,</if>
 			<if test="md5 != null">MD5,</if>
 			<if test="useKeywordsFilter != null">UseKeywordsFilter,</if>
-			<if test="column != null">ColumnId,</if>
 			<if test="monitored != null">Monitored</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -59,7 +57,6 @@
 			<if test="endTag != null">#{endTag},</if>
 			<if test="md5 != null">#{md5},</if>
 			<if test="useKeywordsFilter != null">#{useKeywordsFilter},</if>
-			<if test="column != null">#{column},</if>
 			<if test="monitored != null">#{monitored}</if>
 		</trim>
 	</insert>
@@ -84,7 +81,6 @@
 			<if test="endTag != null">EndTag = #{endTag},</if>
 			<if test="md5 != null">MD5 = #{md5},</if>
 			<if test="useKeywordsFilter != null">UseKeywordsFilter = #{useKeywordsFilter},</if>
-			<if test="column != null">ColumnId = #{column},</if>
 			<if test="monitored != null">Monitored = #{monitored}</if>
 		</set>
 		<where>ID = #{id}</where>

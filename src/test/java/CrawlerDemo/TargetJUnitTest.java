@@ -46,7 +46,6 @@ public class TargetJUnitTest {
 		target.setEndTag("endTag");
 		target.setMd5("md5");
 		target.setUseKeywordsFilter(false);
-		target.setColumn(1L);
 		target.setMonitored(false);
 		try {
 			targetService.save(target);

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.becks.mapper.NewsMapper">
+	<resultMap id="BaseResultMap" type="com.becks.entity.News">
+		<result columnId="ID" property="id" />
+		<result columnId="CategoryID" property="categoryId" />
+		<result columnId="MissionID" property="missionId" />
+		<result columnId="JobID" property="jobId" />
+		<result columnId="Title" property="title" />
+		<result columnId="Url" property="url" />
+		<result columnId="Author" property="author" />
+		<result columnId="Source" property="source" />
+		<result columnId="SourceUrl" property="sourceUrl" />
+		<result columnId="Brief" property="brief" />
+		<result columnId="Content" property="content" />
+		<result columnId="Keywords" property="keywords" />
+		<result columnId="ReleaseTime" property="releaseTime" />
+		<result columnId="PickTime" property="pickTime" />
+		<result columnId="Status" property="status" />
+		<result columnId="MonitorType" property="monitorType" />
+		<result columnId="PureTitle" property="pureTitle" />
+		<result columnId="TargetID" property="newsId" />
+		<result columnId="Editor" property="editor" />
+		<result columnId="IsRead" property="isRead" />
+		<result columnId="CheckCode" property="checkCode" />
+	</resultMap>
+
+	<sql id="All_Column_List">
+		ID, CategoryID, MissionID, JobID, Title, Url, Author,
+		Source, SourceUrl, Brief,
+		Content, Keywords, ReleaseTime, PickTime,
+		Status, MonitorType, PureTitle, TargetID,
+		Editor, IsRead, CheckCode
+	</sql>
+
+	<insert id="insert" parameterType="com.becks.entity.News"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="categoryid != null">
+				CategoryID,
+			</if>
+			<if test="missionid != null">
+				MissionID,
+			</if>
+			<if test="jobid != null">
+				JobID,
+			</if>
+			<if test="title != null">
+				Title,
+			</if>
+			<if test="url != null">
+				Url,
+			</if>
+			<if test="author != null">
+				Author,
+			</if>
+			<if test="source != null">
+				Source,
+			</if>
+			<if test="sourceurl != null">
+				SourceUrl,
+			</if>
+			<if test="brief != null">
+				Brief,
+			</if>
+			<if test="keywords != null">
+				Keywords,
+			</if>
+			<if test="releasetime != null">
+				ReleaseTime,
+			</if>
+			<if test="picktime != null">
+				PickTime,
+			</if>
+			<if test="status != null">
+				Status,
+			</if>
+			<if test="monitortype != null">
+				MonitorType,
+			</if>
+			<if test="puretitle != null">
+				PureTitle,
+			</if>
+			<if test="newsid != null">
+				TargetID,
+			</if>
+			<if test="editor != null">
+				Editor,
+			</if>
+			<if test="columnid != null">
+				ColumnID,
+			</if>
+			<if test="isread != null">
+				IsRead,
+			</if>
+			<if test="checkcode != null">
+				CheckCode,
+			</if>
+			<if test="content != null">
+				Content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="categoryId != null">
+				#{categoryId},
+			</if>
+			<if test="missionId != null">
+				#{missionId},
+			</if>
+			<if test="jobId != null">
+				#{jobId},
+			</if>
+			<if test="title != null">
+				#{title},
+			</if>
+			<if test="url != null">
+				#{url},
+			</if>
+			<if test="author != null">
+				#{author},
+			</if>
+			<if test="source != null">
+				#{source},
+			</if>
+			<if test="sourceUrl != null">
+				#{sourceUrl},
+			</if>
+			<if test="brief != null">
+				#{brief},
+			</if>
+			<if test="keywords != null">
+				#{keywords},
+			</if>
+			<if test="releaseTime != null">
+				#{releaseTime},
+			</if>
+			<if test="pickTime != null">
+				#{pickTime},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+			<if test="monitorType != null">
+				#{monitorType},
+			</if>
+			<if test="pureTitle != null">
+				#{pureTitle},
+			</if>
+			<if test="newsId != null">
+				#{newsId},
+			</if>
+			<if test="editor != null">
+				#{editor},
+			</if>
+			<if test="isRead != null">
+				#{isRead},
+			</if>
+			<if test="checkCode != null">
+				#{checkCode},
+			</if>
+			<if test="content != null">
+				#{content},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="delete" parameterType="java.lang.Integer">
+		delete from news
+		<where>id = #{id}</where>
+	</update>
+
+	<update id="update" parameterType="com.becks.entity.News">
+		update news
+		<set >
+      <if test="categoryId != null" >
+        CategoryID = #{categoryId},
+      </if>
+      <if test="missionId != null" >
+        MissionID = #{missionId},
+      </if>
+      <if test="jobId != null" >
+        JobID = #{jobId},
+      </if>
+      <if test="title != null" >
+        Title = #{title},
+      </if>
+      <if test="url != null" >
+        Url = #{url},
+      </if>
+      <if test="author != null" >
+        Author = #{author},
+      </if>
+      <if test="source != null" >
+        Source = #{source},
+      </if>
+      <if test="sourceUrl != null" >
+        SourceUrl = #{sourceUrl},
+      </if>
+      <if test="brief != null" >
+        Brief = #{brief},
+      </if>
+      <if test="keywords != null" >
+        Keywords = #{keywords},
+      </if>
+      <if test="releasetime != null" >
+        ReleaseTime = #{releaseTime},
+      </if>
+      <if test="picktime != null" >
+        PickTime = #{pickTime},
+      </if>
+      <if test="status != null" >
+        Status = #{status},
+      </if>
+      <if test="monitorType != null" >
+        MonitorType = #{monitorType},
+      </if>
+      <if test="pureTitle != null" >
+        PureTitle = #{pureTitle},
+      </if>
+      <if test="targetId != null" >
+        TargetID = #{targetId},
+      </if>
+      <if test="editor != null" >
+        Editor = #{editor},
+      </if>
+      <if test="columnId != null" >
+        ColumnID = #{columnId},
+      </if>
+      <if test="isRead != null" >
+        IsRead = #{isRead},
+      </if>
+      <if test="checkCode != null" >
+        CheckCode = #{checkCode},
+      </if>
+      <if test="content != null" >
+        Content = #{content},
+      </if>
+    </set>
+		<where>ID = #{id}</where>
+	</update>
+
+	<select id="getNewsById" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="All_Column_List" />
+		from news
+		<where> ID = #{id}</where>
+	</select>
+
+	<select id="getNewsAll" resultMap="BaseResultMap">
+		select
+		<include refid="All_Column_List" />
+		from news
+	</select>
+
+	<sql id="sqlOfPage">
+		<where>
+			<if test="id != null">and id = #{id}</if>
+			<if test="name != null">and name = #{name}</if>
+			<if test="age != null">and age = #{age}</if>
+			<if test="beginDate != null"><![CDATA[and #{beginDate} <= created_date]]></if>
+			<if test="endDate != null"><![CDATA[and created_date <= #{endDate}]]></if>
+		</where>
+	</sql>
+	<!-- <select id="countPage" resultType="Integer"> select count(*) from user 
+		<include refid="sqlOfPage" /> </select> <select id="queryPage" resultMap="BaseResultMap" 
+		parameterType="map"> select <include refid="All_Column_List" /> from user 
+		<include refid="sqlOfPage" /> <choose> <when test="orderBy != null and order 
+		!= null"> order by ${orderBy} ${order}, id ${order} </when> <otherwise> order 
+		by id desc </otherwise> </choose> limit ${startIndex}, ${pageSize} </select> -->
+
+	<sql id="sqlOfPrevPage">
+		<where>
+			status = 1 and <![CDATA[id < #{offsetId}]]>
+			<if test="objectId != null">and object_id = #{objectId}</if>
+			<if test="objectType != null">and object_type = #{objectType}</if>
+		</where>
+	</sql>
+	<!-- <select id="countPrevPage" resultType="Integer"> select count(*) from 
+		user <include refid="sqlOfPrevPage" /> </select> <select id="queryPrevPage" 
+		resultMap="BaseResultMap" parameterType="map"> select <include refid="All_Column_List" 
+		/> from user <include refid="sqlOfPrevPage" /> <choose> <when test="orderBy 
+		!= null and order != null"> order by ${orderBy} ${order}, id ${order} </when> 
+		<otherwise> order by id desc </otherwise> </choose> limit ${startIndex}, 
+		${pageSize} </select> -->
+
+	<sql id="sqlOfNextPage">
+		<where>
+			status = 1 and <![CDATA[id > #{offsetId}]]>
+			<if test="objectId != null">and object_id = #{objectId}</if>
+			<if test="objectType != null">and object_type = #{objectType}</if>
+		</where>
+	</sql>
+	<!-- <select id="countNextPage" resultType="Integer"> select count(*) from 
+		user <include refid="sqlOfNextPage" /> </select> <select id="queryNextPage" 
+		resultMap="BaseResultMap" parameterType="map"> select <include refid="All_Column_List" 
+		/> from user <include refid="sqlOfNextPage" /> <choose> <when test="orderBy 
+		!= null and order != null"> order by ${orderBy} ${order}, id ${order} </when> 
+		<otherwise> order by id desc </otherwise> </choose> limit ${startIndex}, 
+		${pageSize} </select> -->
+
+</mapper>

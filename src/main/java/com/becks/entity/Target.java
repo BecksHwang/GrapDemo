@@ -17,7 +17,6 @@ public class Target implements Serializable {
 	private String endTag;
 	private String md5;
 	private Boolean useKeywordsFilter;
-	private Long column;
 	private Boolean monitored;
 
 	public Target() {
@@ -25,7 +24,7 @@ public class Target implements Serializable {
 
 	public Target(Long id, Long missionId, String type, String name, String url, String first, String last,
 			Integer step, Integer sequence, String startTag, String endTag, String md5, Boolean useKeywordsFilter,
-			Long column, Boolean monitored) {
+			Boolean monitored) {
 		super();
 		this.id = id;
 		this.missionId = missionId;
@@ -40,7 +39,6 @@ public class Target implements Serializable {
 		this.endTag = endTag;
 		this.md5 = md5;
 		this.useKeywordsFilter = useKeywordsFilter;
-		this.column = column;
 		this.monitored = monitored;
 	}
 
@@ -148,14 +146,6 @@ public class Target implements Serializable {
 		this.useKeywordsFilter = useKeywordsFilter;
 	}
 
-	public Long getColumn() {
-		return column;
-	}
-
-	public void setColumn(Long column) {
-		this.column = column;
-	}
-
 	public Boolean getMonitored() {
 		return monitored;
 	}
@@ -169,7 +159,7 @@ public class Target implements Serializable {
 		return "Target [id=" + id + ", missionId=" + missionId + ", type=" + type + ", name=" + name + ", url=" + url
 				+ ", first=" + first + ", last=" + last + ", step=" + step + ", sequence=" + sequence + ", startTag="
 				+ startTag + ", endTag=" + endTag + ", md5=" + md5 + ", useKeywordsFilter=" + useKeywordsFilter
-				+ ", column=" + column + ", monitored=" + monitored + "]";
+				+ ", monitored=" + monitored + "]";
 	}
 
 }
