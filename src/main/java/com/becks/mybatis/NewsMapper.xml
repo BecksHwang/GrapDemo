@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.becks.mapper.NewsMapper">
 	<resultMap id="BaseResultMap" type="com.becks.entity.News">
-		<result columnId="ID" property="id" />
-		<result columnId="CategoryID" property="categoryId" />
-		<result columnId="MissionID" property="missionId" />
-		<result columnId="JobID" property="jobId" />
-		<result columnId="Title" property="title" />
-		<result columnId="Url" property="url" />
-		<result columnId="Author" property="author" />
-		<result columnId="Source" property="source" />
-		<result columnId="SourceUrl" property="sourceUrl" />
-		<result columnId="Brief" property="brief" />
-		<result columnId="Content" property="content" />
-		<result columnId="Keywords" property="keywords" />
-		<result columnId="ReleaseTime" property="releaseTime" />
-		<result columnId="PickTime" property="pickTime" />
-		<result columnId="Status" property="status" />
-		<result columnId="MonitorType" property="monitorType" />
-		<result columnId="PureTitle" property="pureTitle" />
-		<result columnId="TargetID" property="newsId" />
-		<result columnId="Editor" property="editor" />
-		<result columnId="IsRead" property="isRead" />
-		<result columnId="CheckCode" property="checkCode" />
+		<result column="ID" property="id" />
+		<result column="CategoryID" property="categoryId" />
+		<result column="MissionID" property="missionId" />
+		<result column="JobID" property="jobId" />
+		<result column="Title" property="title" />
+		<result column="Url" property="url" />
+		<result column="Author" property="author" />
+		<result column="Source" property="source" />
+		<result column="SourceUrl" property="sourceUrl" />
+		<result column="Brief" property="brief" />
+		<result column="Content" property="content" />
+		<result column="Keywords" property="keywords" />
+		<result column="ReleaseTime" property="releaseTime" />
+		<result column="PickTime" property="pickTime" />
+		<result column="Status" property="status" />
+		<result column="MonitorType" property="monitorType" />
+		<result column="PureTitle" property="pureTitle" />
+		<result column="TargetID" property="targetId" />
+		<result column="Editor" property="editor" />
+		<result column="IsRead" property="isRead" />
+		<result column="CheckCode" property="checkCode" />
 	</resultMap>
 
 	<sql id="All_Column_List">
@@ -40,13 +40,13 @@
 			<if test="id != null">
 				ID,
 			</if>
-			<if test="categoryid != null">
+			<if test="categoryId != null">
 				CategoryID,
 			</if>
-			<if test="missionid != null">
+			<if test="missionId != null">
 				MissionID,
 			</if>
-			<if test="jobid != null">
+			<if test="jobId != null">
 				JobID,
 			</if>
 			<if test="title != null">
@@ -61,7 +61,7 @@
 			<if test="source != null">
 				Source,
 			</if>
-			<if test="sourceurl != null">
+			<if test="sourceUrl != null">
 				SourceUrl,
 			</if>
 			<if test="brief != null">
@@ -70,34 +70,31 @@
 			<if test="keywords != null">
 				Keywords,
 			</if>
-			<if test="releasetime != null">
+			<if test="releaseTime != null">
 				ReleaseTime,
 			</if>
-			<if test="picktime != null">
+			<if test="pickTime != null">
 				PickTime,
 			</if>
 			<if test="status != null">
 				Status,
 			</if>
-			<if test="monitortype != null">
+			<if test="monitorType != null">
 				MonitorType,
 			</if>
-			<if test="puretitle != null">
+			<if test="pureTitle != null">
 				PureTitle,
 			</if>
-			<if test="newsid != null">
+			<if test="targetId != null">
 				TargetID,
 			</if>
 			<if test="editor != null">
 				Editor,
 			</if>
-			<if test="columnid != null">
-				ColumnID,
-			</if>
-			<if test="isread != null">
+			<if test="isRead != null">
 				IsRead,
 			</if>
-			<if test="checkcode != null">
+			<if test="checkCode != null">
 				CheckCode,
 			</if>
 			<if test="content != null">
@@ -153,8 +150,8 @@
 			<if test="pureTitle != null">
 				#{pureTitle},
 			</if>
-			<if test="newsId != null">
-				#{newsId},
+			<if test="targetId != null">
+				#{targetId},
 			</if>
 			<if test="editor != null">
 				#{editor},
@@ -173,12 +170,12 @@
 
 	<update id="delete" parameterType="java.lang.Integer">
 		delete from news
-		<where>id = #{id}</where>
+		<where>ID = #{id}</where>
 	</update>
 
 	<update id="update" parameterType="com.becks.entity.News">
 		update news
-		<set >
+	<set >
       <if test="categoryId != null" >
         CategoryID = #{categoryId},
       </if>
@@ -209,10 +206,10 @@
       <if test="keywords != null" >
         Keywords = #{keywords},
       </if>
-      <if test="releasetime != null" >
+      <if test="releaseTime != null" >
         ReleaseTime = #{releaseTime},
       </if>
-      <if test="picktime != null" >
+      <if test="pickTime != null" >
         PickTime = #{pickTime},
       </if>
       <if test="status != null" >
@@ -229,9 +226,6 @@
       </if>
       <if test="editor != null" >
         Editor = #{editor},
-      </if>
-      <if test="columnId != null" >
-        ColumnID = #{columnId},
       </if>
       <if test="isRead != null" >
         IsRead = #{isRead},
@@ -260,21 +254,33 @@
 		from news
 	</select>
 
-	<sql id="sqlOfPage">
-		<where>
-			<if test="id != null">and id = #{id}</if>
-			<if test="name != null">and name = #{name}</if>
-			<if test="age != null">and age = #{age}</if>
-			<if test="beginDate != null"><![CDATA[and #{beginDate} <= created_date]]></if>
-			<if test="endDate != null"><![CDATA[and created_date <= #{endDate}]]></if>
-		</where>
-	</sql>
-	<!-- <select id="countPage" resultType="Integer"> select count(*) from user 
-		<include refid="sqlOfPage" /> </select> <select id="queryPage" resultMap="BaseResultMap" 
-		parameterType="map"> select <include refid="All_Column_List" /> from user 
-		<include refid="sqlOfPage" /> <choose> <when test="orderBy != null and order 
-		!= null"> order by ${orderBy} ${order}, id ${order} </when> <otherwise> order 
-		by id desc </otherwise> </choose> limit ${startIndex}, ${pageSize} </select> -->
+	<!-- <sql id="sqlOfPage">
+	<where>
+		<if test="id != null">and id = #{id}</if>
+		<if test="name != null">and name = #{name}</if>
+		<if test="age != null">and age = #{age}</if>
+		<if test="beginDate != null"><![CDATA[and #{beginDate} <= created_date]]></if>
+		<if test="endDate != null"><![CDATA[and created_date <= #{endDate}]]></if>
+	</where>
+</sql>
+	<select id="countPage" resultType="Integer">
+		select count(*) from user
+		<include refid="sqlOfPage" />
+	</select>
+	<select id="queryPage" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="All_Column_List" />
+		from user
+		<include refid="sqlOfPage" />
+		<choose>
+			<when test="orderBy != null and order 
+		!= null"> order by ${orderBy} ${order}, id ${order} </when>
+			<otherwise> order
+				by id desc
+			</otherwise>
+		</choose>
+		limit ${startIndex}, ${pageSize}
+	</select>
 
 	<sql id="sqlOfPrevPage">
 		<where>
@@ -283,13 +289,25 @@
 			<if test="objectType != null">and object_type = #{objectType}</if>
 		</where>
 	</sql>
-	<!-- <select id="countPrevPage" resultType="Integer"> select count(*) from 
-		user <include refid="sqlOfPrevPage" /> </select> <select id="queryPrevPage" 
-		resultMap="BaseResultMap" parameterType="map"> select <include refid="All_Column_List" 
-		/> from user <include refid="sqlOfPrevPage" /> <choose> <when test="orderBy 
-		!= null and order != null"> order by ${orderBy} ${order}, id ${order} </when> 
-		<otherwise> order by id desc </otherwise> </choose> limit ${startIndex}, 
-		${pageSize} </select> -->
+	<select id="countPrevPage" resultType="Integer">
+		select count(*) from
+		user
+		<include refid="sqlOfPrevPage" />
+	</select>
+	<select id="queryPrevPage" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="All_Column_List" />
+		from user
+		<include refid="sqlOfPrevPage" />
+		<choose>
+			<when test="orderBy 
+		!= null and order != null"> order by ${orderBy} ${order}, id ${order} </when>
+			<otherwise> order by id desc </otherwise>
+		</choose>
+		limit ${startIndex},
+		${pageSize}
+	</select>
 
 	<sql id="sqlOfNextPage">
 		<where>
@@ -298,12 +316,24 @@
 			<if test="objectType != null">and object_type = #{objectType}</if>
 		</where>
 	</sql>
-	<!-- <select id="countNextPage" resultType="Integer"> select count(*) from 
-		user <include refid="sqlOfNextPage" /> </select> <select id="queryNextPage" 
-		resultMap="BaseResultMap" parameterType="map"> select <include refid="All_Column_List" 
-		/> from user <include refid="sqlOfNextPage" /> <choose> <when test="orderBy 
-		!= null and order != null"> order by ${orderBy} ${order}, id ${order} </when> 
-		<otherwise> order by id desc </otherwise> </choose> limit ${startIndex}, 
-		${pageSize} </select> -->
+	<select id="countNextPage" resultType="Integer">
+		select count(*) from
+		user
+		<include refid="sqlOfNextPage" />
+	</select>
+	<select id="queryNextPage" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="All_Column_List" />
+		from user
+		<include refid="sqlOfNextPage" />
+		<choose>
+			<when test="orderBy 
+		!= null and order != null"> order by ${orderBy} ${order}, id ${order} </when>
+			<otherwise> order by id desc </otherwise>
+		</choose>
+		limit ${startIndex},
+		${pageSize}
+	</select> -->
 
 </mapper>

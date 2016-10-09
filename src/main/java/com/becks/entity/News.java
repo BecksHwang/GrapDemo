@@ -10,9 +10,8 @@ import com.becks.util.StringUtil;
 public class News implements Serializable {
 	private static final long serialVersionUID = 589451326547563067L;
 	private Long id;
-	private Long missionId;
 	private Long categoryId;
-	private Long targetId;
+	private Long missionId;
 	private Long jobId;
 	private String title;
 	private String url;
@@ -29,9 +28,10 @@ public class News implements Serializable {
 	private String status;
 	private String monitorType;
 	private String pureTitle;
+	private Long targetId;
 	private String editor;
-	private Long checkCode;
 	private Long isRead;
+	private Long checkCode;
 
 	public News() {
 		super();
@@ -227,8 +227,8 @@ public class News implements Serializable {
 				+ ", jobId=" + jobId + ", title=" + title + ", url=" + url + ", author=" + author + ", source=" + source
 				+ ", sourceUrl=" + sourceUrl + ", brief=" + brief + ", content=" + content + ", keywords=" + keywords
 				+ ", releaseTime=" + releaseTime + ", pickTime=" + pickTime + ", status=" + status + ", monitorType="
-				+ monitorType + ", pureTitle=" + pureTitle + ", editor=" + editor
-				+ ", checkCode=" + checkCode + ", isRead=" + isRead + "]";
+				+ monitorType + ", pureTitle=" + pureTitle + ", editor=" + editor + ", checkCode=" + checkCode
+				+ ", isRead=" + isRead + "]";
 	}
 
 }

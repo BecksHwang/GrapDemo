@@ -5,6 +5,7 @@ import java.util.List;
 import com.becks.entity.News;
 
 public interface NewsMapper {
+
 	public void insert(News target);
 
 	public void delete(Long id);

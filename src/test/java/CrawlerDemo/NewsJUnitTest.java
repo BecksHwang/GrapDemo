@@ -39,7 +39,7 @@ public class NewsJUnitTest {
 		news.setCategoryId(20L);
 		news.setTargetId(20L);
 		news.setJobId(20L);
-		news.setTitle("标题");
+		news.setTitle("标题3");
 		news.setUrl("www.beckshwang3.com");
 		news.setAuthor("BecksHwang");
 		news.setSource("来源");
@@ -67,7 +67,7 @@ public class NewsJUnitTest {
 	@Rollback(false)
 	public void deleteNews() throws Exception {
 		try {
-			newsService.delete(16L);
+			newsService.delete(1L);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,7 +78,7 @@ public class NewsJUnitTest {
 	@Rollback(false)
 	public void updateNews() throws Exception {
 		News news = new News();
-		news.setId(18L);
+		news.setId(1L);
 		news.setUrl("www.baidu.com");
 		try {
 			newsService.update(news);
@@ -92,7 +92,7 @@ public class NewsJUnitTest {
 	public void getNewsById() throws Exception {
 		News news = null;
 		try {
-			news = newsService.getNewsById(18L);
+			news = newsService.getNewsById(1L);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

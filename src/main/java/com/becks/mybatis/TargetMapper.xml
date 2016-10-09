@@ -2,20 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.becks.mapper.TargetMapper">
 	<resultMap id="BaseResultMap" type="com.becks.entity.Target">
-		<result columnId="ID" property="id" />
-		<result columnId="MissionID" property="missionId" />
-		<result columnId="Type" property="type" />
-		<result columnId="Name" property="name" />
-		<result columnId="Url" property="url" />
-		<result columnId="First" property="first" />
-		<result columnId="Last" property="last" />
-		<result columnId="Step" property="step" />
-		<result columnId="Sequence" property="sequence" />
-		<result columnId="StartTag" property="startTag" />
-		<result columnId="EndTag" property="endTag" />
-		<result columnId="MD5" property="md5" />
-		<result columnId="UseKeywordsFilter" property="useKeywordsFilter" />
-		<result columnId="Monitored" property="monitored" />
+		<result column="ID" property="id" />
+		<result column="MissionID" property="missionId" />
+		<result column="Type" property="type" />
+		<result column="Name" property="name" />
+		<result column="Url" property="url" />
+		<result column="First" property="first" />
+		<result column="Last" property="last" />
+		<result column="Step" property="step" />
+		<result column="Sequence" property="sequence" />
+		<result column="StartTag" property="startTag" />
+		<result column="EndTag" property="endTag" />
+		<result column="MD5" property="md5" />
+		<result column="UseKeywordsFilter" property="useKeywordsFilter" />
+		<result column="Monitored" property="monitored" />
 	</resultMap>
 
 	<sql id="All_Column_List">
