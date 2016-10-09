@@ -254,20 +254,26 @@
 		from news
 	</select>
 
-	<!-- <sql id="sqlOfPage">
-	<where>
-		<if test="id != null">and id = #{id}</if>
-		<if test="name != null">and name = #{name}</if>
-		<if test="age != null">and age = #{age}</if>
-		<if test="beginDate != null"><![CDATA[and #{beginDate} <= created_date]]></if>
-		<if test="endDate != null"><![CDATA[and created_date <= #{endDate}]]></if>
-	</where>
-</sql>
-	<select id="countPage" resultType="Integer">
-		select count(*) from user
+	<sql id="sqlOfPage">
+		<where>
+			<if test="url != null">and Url = #{url}</if>
+			<if test="targetId != null">and TargetID = #{targetId}</if>
+			<if test="title != null">and Title = #{title}</if>
+			<if test="beginDate != null"><![CDATA[and #{beginDate} <= created_date]]></if>
+			<if test="endDate != null"><![CDATA[and created_date <= #{endDate}]]></if>
+		</where>
+	</sql>
+	
+	<select id="countNews" parameterType="map" resultType="Integer">
+		select count(*) from news
 		<include refid="sqlOfPage" />
 	</select>
-	<select id="queryPage" resultMap="BaseResultMap" parameterType="map">
+	
+	<select id="countPage" resultType="Integer">
+		select count(*) from news
+		<include refid="sqlOfPage" />
+	</select>
+	<!--<select id="queryPage" resultMap="BaseResultMap" parameterType="map">
 		select
 		<include refid="All_Column_List" />
 		from user

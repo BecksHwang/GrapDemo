@@ -1,5 +1,6 @@
 package com.becks.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.becks.entity.News;
@@ -15,4 +16,7 @@ public interface NewsMapper {
 	public News getNewsById(Long id);
 
 	public List<News> getNewsAll();
+	
+	@SuppressWarnings("rawtypes")
+	public int countNews(HashMap hm);
 }

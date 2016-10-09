@@ -22,5 +22,5 @@ public interface NewsService {
 
 	List<News> getNewsAll();
 
-	// boolean isExits(Long targetId, String title, String url);
+	boolean isExits(Long targetId, String title, String url);
 }

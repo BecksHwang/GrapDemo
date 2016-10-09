@@ -1,5 +1,6 @@
 package com.becks.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,21 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public List<News> getNewsAll() {
 		return newsMapper.getNewsAll();
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public boolean isExits(Long targetId, String title, String url) {
+		boolean result = false;
+		HashMap hm = new HashMap<>();
+		hm.put("targetId", targetId);
+		hm.put("title", title);
+		hm.put("url", url);
+		int count = newsMapper.countNews(hm);
+		if(count >= 1){
+			result = true;
+		}
+		return result;
 	}
 
 }

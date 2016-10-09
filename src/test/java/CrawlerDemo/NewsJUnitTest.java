@@ -111,5 +111,10 @@ public class NewsJUnitTest {
 			System.out.println(news.toString());
 		}
 	}
+	
+	@Test
+	public void isExit() throws Exception {
+		System.out.println(newsService.isExits(20L, "标题2", "www.beckshwang3.com"));
+	}
 
 }
