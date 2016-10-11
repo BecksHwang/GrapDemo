@@ -5,8 +5,9 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+@SuppressWarnings("serial")
 public class Interaction implements Serializable {
-	private static final long serialVersionUID = 425651326847364061L;
+
 	private long id;
 	private String ask;
 	private String answer;
@@ -23,10 +24,19 @@ public class Interaction implements Serializable {
 		super();
 	}
 
-	public Interaction(String ask, String answer) {
+	public Interaction(long id, String ask, String answer, String source, String sourceUrl, Date pickTime,
+			long targetId, long isRead, long checkCode, String company) {
 		super();
+		this.id = id;
 		this.ask = ask;
 		this.answer = answer;
+		this.source = source;
+		this.sourceUrl = sourceUrl;
+		this.pickTime = pickTime;
+		this.targetId = targetId;
+		this.isRead = isRead;
+		this.checkCode = checkCode;
+		this.company = company;
 	}
 
 	public long getId() {
