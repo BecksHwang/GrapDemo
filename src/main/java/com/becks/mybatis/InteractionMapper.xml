@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.becks.mapper.InteractionMapper">
+	<resultMap id="BaseResultMap" type="com.becks.entity.Interaction">
+		<result column="ID" property="id" />
+		<result column="Ask" property="ask" />
+		<result column="Answer" property="answer" />
+		<result column="Source" property="source" />
+		<result column="SourceUrl" property="sourceUrl" />
+		<result column="PickTime" property="pickTime" />
+		<result column="TargetID" property="targetId" />
+		<result column="IsRead" property="isRead" />
+		<result column="CheckCode" property="checkCode" />
+		<result column="Company" property="company" />
+	</resultMap>
+
+	<sql id="All_Column_List">
+		ID, Ask, Answer, Source, SourceUrl, PickTime, TargetID,
+		IsRead, CheckCode, Company
+	</sql>
+
+	<insert id="insert" parameterType="com.becks.entity.Interaction"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into interaction
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="ask != null">
+				Ask,
+			</if>
+			<if test="answer != null">
+				Answer,
+			</if>
+			<if test="source != null">
+				Source,
+			</if>
+			<if test="sourceUrl != null">
+				SourceUrl,
+			</if>
+			<if test="pickTime != null">
+				PickTime,
+			</if>
+			<if test="targetId != null">
+				TargetID,
+			</if>
+			<if test="isRead != null">
+				IsRead,
+			</if>
+			<if test="checkCode != null">
+				CheckCode,
+			</if>
+			<if test="company != null">
+				Company,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="ask != null">
+				#{ask},
+			</if>
+			<if test="answer != null">
+				#{answer},
+			</if>
+			<if test="source != null">
+				#{source},
+			</if>
+			<if test="sourceUrl != null">
+				#{sourceUrl},
+			</if>
+			<if test="pickTime != null">
+				#{pickTime},
+			</if>
+			<if test="targetId != null">
+				#{targetId},
+			</if>
+			<if test="isRead != null">
+				#{isRead},
+			</if>
+			<if test="checkCode != null">
+				#{checkCode},
+			</if>
+			<if test="company != null">
+				#{company},
+			</if>
+
+		</trim>
+	</insert>
+
+	<update id="delete" parameterType="java.lang.Integer">
+		delete from interaction
+		<where>ID = #{id}</where>
+	</update>
+
+	<update id="update" parameterType="com.becks.entity.Interaction">
+		update interaction
+		<set>
+			<if test="ask != null">
+				Ask = #{ask},
+			</if>
+			<if test="answer != null">
+				Answer = #{answer},
+			</if>
+			<if test="source != null">
+				Source = #{source},
+			</if>
+			<if test="sourceUrl != null">
+				SourceUrl = #{sourceUrl},
+			</if>
+			<if test="pickTime != null">
+				PickTime = #{pickTime},
+			</if>
+			<if test="targetId != null">
+				TargetID = #{targetId},
+			</if>
+			<if test="isRead != null">
+				IsRead = #{isRead},
+			</if>
+			<if test="checkCode != null">
+				CheckCode = #{checkCode},
+			</if>
+			<if test="company != null">
+				Company = #{company},
+			</if>
+		</set>
+		<where>ID = #{id}</where>
+	</update>
+
+	<select id="getInteractionById" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="All_Column_List" />
+		from interaction
+		<where> ID = #{id}</where>
+	</select>
+
+	<select id="getInteractionAll" resultMap="BaseResultMap">
+		select
+		<include refid="All_Column_List" />
+		from interaction
+	</select>
+
+	<sql id="sqlOfPage">
+		<where>
+			<if test="ask != null">and Ask = #{ask}</if>
+			<if test="answer != null">and Answer = #{answer}</if>
+			<if test="targetId != null">and TargetID = #{targetId}</if>
+			<if test="beginDate != null"><![CDATA[and #{beginDate} <= created_date]]></if>
+			<if test="endDate != null"><![CDATA[and created_date <= #{endDate}]]></if>
+		</where>
+	</sql>
+
+	<select id="countInteraction" parameterType="map" resultType="Integer">
+		select count(*) from interaction
+		<include refid="sqlOfPage" />
+	</select>
+
+	<select id="countPage" resultType="Integer">
+		select count(*) from interaction
+		<include refid="sqlOfPage" />
+	</select>
+
+</mapper>

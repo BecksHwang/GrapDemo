@@ -7,11 +7,11 @@ import com.becks.entity.News;
 
 public interface NewsMapper {
 
-	public void insert(News target);
+	public void insert(News news);
 
 	public void delete(Long id);
 
-	public void update(News target);
+	public void update(News news);
 
 	public News getNewsById(Long id);
 

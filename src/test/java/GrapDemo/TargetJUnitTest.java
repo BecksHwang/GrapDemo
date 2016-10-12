@@ -51,6 +51,7 @@ public class TargetJUnitTest {
 			targetService.save(target);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		System.out.println("插入完毕！");
 	}
@@ -62,6 +63,7 @@ public class TargetJUnitTest {
 			targetService.delete(16L);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		System.out.println("删除完毕！");
 	}
@@ -76,6 +78,7 @@ public class TargetJUnitTest {
 			targetService.update(target);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		System.out.println("修改完毕！");
 	}
@@ -87,6 +90,7 @@ public class TargetJUnitTest {
 			target = targetService.getTargetById(18L);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		System.out.println(target.toString());
 	}
@@ -98,6 +102,7 @@ public class TargetJUnitTest {
 			targetList = targetService.getTargetAll();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		for (Target target : targetList) {
 			System.out.println(target.toString());

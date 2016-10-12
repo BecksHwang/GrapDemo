@@ -59,6 +59,7 @@ public class NewsJUnitTest {
 			newsService.save(news);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		System.out.println("插入完毕！");
 	}
@@ -70,6 +71,7 @@ public class NewsJUnitTest {
 			newsService.delete(1L);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		System.out.println("删除完毕！");
 	}
@@ -84,6 +86,7 @@ public class NewsJUnitTest {
 			newsService.update(news);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		System.out.println("修改完毕！");
 	}
@@ -95,6 +98,7 @@ public class NewsJUnitTest {
 			news = newsService.getNewsById(1L);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		System.out.println(news.toString());
 	}
@@ -106,6 +110,7 @@ public class NewsJUnitTest {
 			newsList = newsService.getNewsAll();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
 		for (News news : newsList) {
 			System.out.println(news.toString());
