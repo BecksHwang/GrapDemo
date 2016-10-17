@@ -18,8 +18,8 @@ public class StockTrackGrapDateMission implements ApplicationListener {
 	@Autowired
 	private CommonUrlGrapService commonUrlGrapService;
 
-	/*@Autowired
-	private InteractionUrlGrapService interactionUrlGrapService;*/
+	@Autowired
+	private InteractionUrlGrapService interactionUrlGrapService;
 
 	public void onApplicationEvent(ApplicationEvent arg0) {
 		if (isStart) {
@@ -27,8 +27,8 @@ public class StockTrackGrapDateMission implements ApplicationListener {
 			isStart = false;
 			// 启动common网址抓取任务
 			commonUrlGrapService.grap();
-//			// 启动全景网互动精华网址抓取任务
-//			interactionUrlGrapService.grap();
+			// 启动全景网互动精华网址抓取任务
+			//interactionUrlGrapService.grap();
 		}
 	}
 
