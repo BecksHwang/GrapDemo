@@ -23,4 +23,8 @@ public interface InteractionService {
 	List<Interaction> getInteractionAll();
 
 	boolean isExits(String ask, String answer);
+	
+	List<Interaction> getNewInteractionByPickTime(Interaction interaction);
+	
+	List<Interaction> getOldInteractionByPickTime(Interaction interaction);
 }

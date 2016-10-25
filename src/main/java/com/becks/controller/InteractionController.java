@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.becks.entity.Interaction;
-import com.becks.mapper.InteractionMapper;
+import com.becks.service.InteractionService;
 
 /**
  * 创建时间：
@@ -24,7 +24,7 @@ public class InteractionController {
 	static Logger logger = Logger.getLogger(InteractionController.class);
 
 	@Autowired
-	private InteractionMapper interactionMapper;
+	private InteractionService interactionService;
 
 	@RequestMapping("/getInteractions")
 	public @ResponseBody List<Interaction> getInteractions(Interaction interaction) {
@@ -33,13 +33,13 @@ public class InteractionController {
 		if (interaction.getPickTime() == null) {
 			interaction.setPickTime(new Date());
 			try {
-				result = interactionMapper.getOldInteractionByPickTime(interaction);
+				result = interactionService.getOldInteractionByPickTime(interaction);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				result = interactionMapper.getNewInteractionByPickTime(interaction);
+				result = interactionService.getNewInteractionByPickTime(interaction);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

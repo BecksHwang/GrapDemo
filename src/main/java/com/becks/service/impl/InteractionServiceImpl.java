@@ -61,5 +61,15 @@ public class InteractionServiceImpl implements InteractionService {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<Interaction> getOldInteractionByPickTime(Interaction interaction) {
+		return interactionMapper.getOldInteractionByPickTime(interaction);
+	}
+
+	@Override
+	public List<Interaction> getNewInteractionByPickTime(Interaction interaction) {
+		return interactionMapper.getNewInteractionByPickTime(interaction);
+	}
 
 }
