@@ -9,3 +9,10 @@
 
 ### Introduction
 A demo for grap site information, using maven project management, as for springMVC + Mybatis framework, using redis check repeat information。
+
+### Use
+ * 1　　Download the project as a Java project
+
+ * 2　　Run the SQL file to create the database
+
+ * 3　　Modify the configuration of the resource folder 
