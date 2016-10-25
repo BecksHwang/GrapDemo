@@ -121,5 +121,21 @@ public class NewsJUnitTest {
 	public void isExit() throws Exception {
 		System.out.println(newsService.isExits(20L, "标题2", "www.beckshwang3.com"));
 	}
+	
+	@Test
+	public void getOldOldByPickTimeTest() throws Exception {
+		News news = new News();
+		news.setPickTime(new Date());
+		List<News> newsList = null;
+		try {
+			newsList = newsService.getNewsAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		for (News news2 : newsList) {
+			System.out.println(news2.toString());
+		}
+	}
 
 }

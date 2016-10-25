@@ -142,6 +142,26 @@
 		<include refid="All_Column_List" />
 		from interaction
 	</select>
+	
+	<select id="getOldInteractionByPickTime" resultMap="BaseResultMap" parameterType="com.becks.entity.Interaction">
+		select
+		<include refid="All_Column_List" />
+		from interaction
+		where 1=1
+		<![CDATA[and PickTime <= #{pickTime}]]>
+		ORDER BY PickTime desc 
+		LIMIT 20 
+	</select>
+	
+	<select id="getNewInteractionByPickTime" resultMap="BaseResultMap" parameterType="com.becks.entity.Interaction">
+		select
+		<include refid="All_Column_List" />
+		from interaction
+		where 1=1 
+		<![CDATA[and PickTime > #{pickTime}]]>
+		ORDER BY PickTime asc 
+		LIMIT 20 
+	</select>
 
 	<sql id="sqlOfPage">
 		<where>

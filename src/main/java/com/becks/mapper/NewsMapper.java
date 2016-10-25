@@ -19,4 +19,8 @@ public interface NewsMapper {
 	
 	@SuppressWarnings("rawtypes")
 	public int countNews(HashMap hm);
+	
+	public List<News> getOldNewsByPickTime(News news);
+	
+	public List<News> getNewNewsByPickTime(News news);
 }

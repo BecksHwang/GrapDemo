@@ -63,4 +63,14 @@ public class NewsServiceImpl implements NewsService {
 		return result;
 	}
 
+	@Override
+	public List<News> getOldNewsByPickTime(News news) {
+		return newsMapper.getOldNewsByPickTime(news);
+	}
+
+	@Override
+	public List<News> getNewNewsByPickTime(News news) {
+		return newsMapper.getNewNewsByPickTime(news);
+	}
+
 }

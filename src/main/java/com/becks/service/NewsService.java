@@ -23,4 +23,8 @@ public interface NewsService {
 	List<News> getNewsAll();
 
 	boolean isExits(Long targetId, String title, String url);
+	
+	List<News> getOldNewsByPickTime(News news);
+	
+	List<News> getNewNewsByPickTime(News news);
 }

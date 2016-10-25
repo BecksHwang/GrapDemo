@@ -43,7 +43,8 @@ function initData(data){
 function refreshGetJson(){
 	vmIndex = vm1.items.length - 1;  //根据最后一个时间 拿新增的数据
 	var time = vm1.items[vmIndex].pickTime;
-	// var time = vm1.items[0].pickTime;
+	//var time = vm1.items[0].pickTime;
+	//console.log(time);
 	var options = '/GrapDemo/news/getNews.do';  //线上的url
 	var url = options + '?' + 'pickTime' + '=' + time;
 	//var url = 'js/myData2.json';  //测试的url

@@ -253,6 +253,26 @@
 		<include refid="All_Column_List" />
 		from news
 	</select>
+	
+	<select id="getOldNewsByPickTime" resultMap="BaseResultMap" parameterType="com.becks.entity.News">
+		select
+		<include refid="All_Column_List" />
+		from news
+		where 1=1
+		<![CDATA[and PickTime <= #{pickTime}]]>
+		ORDER BY PickTime desc 
+		LIMIT 20 
+	</select>
+	
+	<select id="getNewNewsByPickTime" resultMap="BaseResultMap" parameterType="com.becks.entity.News">
+		select
+		<include refid="All_Column_List" />
+		from news
+		where 1=1 
+		<![CDATA[and PickTime > #{pickTime}]]>
+		ORDER BY PickTime asc 
+		LIMIT 20 
+	</select>
 
 	<sql id="sqlOfPage">
 		<where>
