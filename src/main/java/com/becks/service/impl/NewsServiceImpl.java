@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.becks.entity.News;
 import com.becks.mapper.NewsMapper;
 import com.becks.service.NewsService;
+import com.becks.util.Page;
+import com.becks.util.StringUtil;
+import com.becks.vo.NewsQueryVo;
 
 /**
  * 创建时间：
@@ -71,6 +74,45 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public List<News> getNewNewsByPickTime(News news) {
 		return newsMapper.getNewNewsByPickTime(news);
+	}
+
+	@Override
+	public Page queryPage(Page page, NewsQueryVo qVo) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		if (page != null) {
+			if (page.getOrder() != null) {
+				map.put("order", page.getOrder());
+			}
+			if (page.getOffset() != null) {
+				map.put("startIndex", page.getOffset());
+			}
+			
+			if(page.getLimit() != null){
+				map.put("pageSize", page.getLimit());
+			}
+			
+		}
+
+		if (qVo != null) {
+			if (!StringUtil.isNullOrEmpty(qVo.getTitle())) {
+				map.put("title", "%" + qVo.getTitle() + "%");
+			}
+			if (!StringUtil.isNullOrEmpty(qVo.getSource())) {
+				map.put("source", "%" + qVo.getSource() + "%");
+			}
+			if (qVo.getBeginDate() != null) {
+				map.put("beginDate", qVo.getBeginDate());
+			}
+			if (qVo.getEndDate() != null) {
+				map.put("endDate", qVo.getEndDate());
+			}
+		}
+		
+		Page pageResult = new Page();
+		pageResult.setItems(newsMapper.queryPage(map));
+		pageResult.setTotalRow(newsMapper.countPage(map));
+		return pageResult;
 	}
 
 }

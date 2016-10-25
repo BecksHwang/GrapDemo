@@ -2,7 +2,11 @@ package com.becks.service;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import com.becks.entity.News;
+import com.becks.util.Page;
+import com.becks.vo.NewsQueryVo;
 
 /**
  * 创建时间：
@@ -27,4 +31,6 @@ public interface NewsService {
 	List<News> getOldNewsByPickTime(News news);
 	
 	List<News> getNewNewsByPickTime(News news);
+	
+	Page queryPage(Page page, NewsQueryVo qVo);
 }

@@ -23,4 +23,10 @@ public interface NewsMapper {
 	public List<News> getOldNewsByPickTime(News news);
 	
 	public List<News> getNewNewsByPickTime(News news);
+	
+	@SuppressWarnings("rawtypes")
+	public int countPage(HashMap hm);
+	
+	@SuppressWarnings("rawtypes")
+	public List<News> queryPage(HashMap hm);
 }

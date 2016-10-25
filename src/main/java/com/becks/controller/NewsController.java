@@ -53,13 +53,13 @@ public class NewsController {
 		return result;
 	}
 	
-	/*@RequestMapping(value = "/queryNews", method = RequestMethod.GET)
+	@RequestMapping(value = "/queryNews", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> page(@ModelAttribute Page page, @ModelAttribute NewsQueryVo qVo) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Page pageResult = new Page();
 		try {
-			pageResult = newsDao.queryPage(page, qVo);
+			pageResult = newsService.queryPage(page, qVo);
 		} catch (Exception e) {
 			logger.error("Page net error", e);
 			return result;
@@ -67,7 +67,7 @@ public class NewsController {
 		result.put("total", pageResult.getTotalRow());
 		result.put("rows", pageResult.getItems());
 		return result;
-	}*/
+	}
 	
 	@RequestMapping("/newsList")
 	public String newsList() {
