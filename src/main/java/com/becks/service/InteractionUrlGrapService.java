@@ -99,8 +99,7 @@ public class InteractionUrlGrapService {
 
 		@SuppressWarnings("static-access")
 		protected void performTarget(Target target) {
-			logger.error(
-					"抓取网址：" + "targetId:" + target.getId() + "-名称：" + target.getName() + "-URL:" + target.getUrl());
+			logger.error("抓取网址：" + "targetId:" + target.getId() + "-名称：" + target.getName() + "-URL:" + target.getUrl());
 			try {
 				String urlstr = target.getUrl();
 				if (StringUtil.isNullOrEmpty(urlstr)) {
