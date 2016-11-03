@@ -2,8 +2,6 @@ package com.becks.service;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import com.becks.entity.News;
 import com.becks.util.Page;
 import com.becks.vo.NewsQueryVo;

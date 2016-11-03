@@ -114,6 +114,7 @@ public class SendUrlUtil {
 		return jsonObject;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static String getHtml(String address, HashMap headParam) throws Exception {
 		HttpClient httpClient = new HttpClient();
 		/* 连接超时 */
