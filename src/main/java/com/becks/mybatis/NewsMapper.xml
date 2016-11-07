@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.becks.mapper.NewsMapper">
-	<resultMap id="BaseResultMap" type="com.becks.entity.News">
+	<resultMap id="BaseResultMap" type="News">
 		<result column="ID" property="id" />
 		<result column="CategoryID" property="categoryId" />
 		<result column="MissionID" property="missionId" />
@@ -33,7 +33,7 @@
 		Editor, IsRead, CheckCode
 	</sql>
 
-	<insert id="insert" parameterType="com.becks.entity.News"
+	<insert id="insert" parameterType="News"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into news
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -173,7 +173,7 @@
 		<where>ID = #{id}</where>
 	</update>
 
-	<update id="update" parameterType="com.becks.entity.News">
+	<update id="update" parameterType="News">
 		update news
 	<set >
       <if test="categoryId != null" >
@@ -254,7 +254,7 @@
 		from news
 	</select>
 	
-	<select id="getOldNewsByPickTime" resultMap="BaseResultMap" parameterType="com.becks.entity.News">
+	<select id="getOldNewsByPickTime" resultMap="BaseResultMap" parameterType="News">
 		select
 		<include refid="All_Column_List" />
 		from news
@@ -264,7 +264,7 @@
 		LIMIT 20 
 	</select>
 	
-	<select id="getNewNewsByPickTime" resultMap="BaseResultMap" parameterType="com.becks.entity.News">
+	<select id="getNewNewsByPickTime" resultMap="BaseResultMap" parameterType="News">
 		select
 		<include refid="All_Column_List" />
 		from news

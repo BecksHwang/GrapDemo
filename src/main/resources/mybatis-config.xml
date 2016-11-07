@@ -3,7 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <settings>
-    <setting name="logImpl" value="LOG4J"/>
-  </settings>
+	
+	<!-- 日志实现类配置 -->
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+
+	<!-- 类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。 -->
+	<typeAliases>
+		<typeAlias alias="News" type="com.becks.entity.News" />
+		<!-- <typeAlias alias="Blog" type="com.becks.entity.Blog" />
+		<typeAlias alias="Article" type="com.becks.entity.Article" /> -->
+		<!-- 每一个在包 com.becks.entity 中的 Java Bean，在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名。 
+			比如 com.becks.entity.User 的别名为 user；若有注解，则别名为其注解值。 -->
+		<!-- <package name="com.becks.entity"/> -->
+	</typeAliases>
 </configuration>
