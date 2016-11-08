@@ -28,7 +28,7 @@ public class StockTrackGrapDateMission implements ApplicationListener {
 			// 启动common网址抓取任务
 			commonUrlGrapService.grap();
 			// 启动全景网互动精华网址抓取任务
-			//interactionUrlGrapService.grap();
+			interactionUrlGrapService.grap();
 		}
 	}
 

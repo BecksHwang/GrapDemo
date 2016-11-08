@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.becks.mapper.InteractionMapper">
-	<resultMap id="BaseResultMap" type="com.becks.entity.Interaction">
+	<resultMap id="BaseResultMap" type="Interaction">
 		<result column="ID" property="id" />
 		<result column="Ask" property="ask" />
 		<result column="Answer" property="answer" />
@@ -19,7 +19,7 @@
 		IsRead, CheckCode, Company
 	</sql>
 
-	<insert id="insert" parameterType="com.becks.entity.Interaction"
+	<insert id="insert" parameterType="Interaction"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into interaction
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -95,7 +95,7 @@
 		<where>ID = #{id}</where>
 	</update>
 
-	<update id="update" parameterType="com.becks.entity.Interaction">
+	<update id="update" parameterType="Interaction">
 		update interaction
 		<set>
 			<if test="ask != null">
@@ -143,7 +143,7 @@
 		from interaction
 	</select>
 	
-	<select id="getOldInteractionByPickTime" resultMap="BaseResultMap" parameterType="com.becks.entity.Interaction">
+	<select id="getOldInteractionByPickTime" resultMap="BaseResultMap" parameterType="Interaction">
 		select
 		<include refid="All_Column_List" />
 		from interaction
@@ -153,7 +153,7 @@
 		LIMIT 20 
 	</select>
 	
-	<select id="getNewInteractionByPickTime" resultMap="BaseResultMap" parameterType="com.becks.entity.Interaction">
+	<select id="getNewInteractionByPickTime" resultMap="BaseResultMap" parameterType="Interaction">
 		select
 		<include refid="All_Column_List" />
 		from interaction

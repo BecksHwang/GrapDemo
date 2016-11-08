@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.becks.mapper.TargetMapper">
-	<resultMap id="BaseResultMap" type="com.becks.entity.Target">
+	<resultMap id="BaseResultMap" type="Target">
 		<result column="ID" property="id" />
 		<result column="MissionID" property="missionId" />
 		<result column="Type" property="type" />
@@ -24,7 +24,7 @@
 		Monitored
 	</sql>
 
-	<insert id="insert" parameterType="com.becks.entity.Target"
+	<insert id="insert" parameterType="Target"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into target
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -66,7 +66,7 @@
 		<where>id = #{id}</where>
 	</update>
 
-	<update id="update" parameterType="com.becks.entity.Target">
+	<update id="update" parameterType="Target">
 		update target
 		<set>
 			<if test="missionId != null">MissionId = #{missionId},</if>

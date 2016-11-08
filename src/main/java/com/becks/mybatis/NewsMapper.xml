@@ -278,6 +278,8 @@
 		<where>
 			<if test="source != null">and Source like #{source}</if>
 			<if test="title != null">and Title like #{title}</if>
+			<if test="url != null">and Url = #{url}</if>
+			<if test="targetId != null">and TargetId = #{targetId}</if>
 			<if test="beginDate != null"><![CDATA[and #{beginDate} <= PickTime]]></if>
 			<if test="endDate != null"><![CDATA[and PickTime <= #{endDate}]]></if>
 		</where>
