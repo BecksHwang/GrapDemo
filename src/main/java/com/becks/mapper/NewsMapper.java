@@ -16,17 +16,17 @@ public interface NewsMapper {
 	public News getNewsById(Long id);
 
 	public List<News> getNewsAll();
-	
+
 	@SuppressWarnings("rawtypes")
 	public int countNews(HashMap hm);
-	
+
 	public List<News> getOldNewsByPickTime(News news);
-	
+
 	public List<News> getNewNewsByPickTime(News news);
-	
+
 	@SuppressWarnings("rawtypes")
 	public int countPage(HashMap hm);
-	
+
 	@SuppressWarnings("rawtypes")
 	public List<News> queryPage(HashMap hm);
 }

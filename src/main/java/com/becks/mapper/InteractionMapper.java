@@ -19,8 +19,8 @@ public interface InteractionMapper {
 
 	@SuppressWarnings("rawtypes")
 	public int countInteraction(HashMap hm);
-	
+
 	public List<Interaction> getOldInteractionByPickTime(Interaction interaction);
-	
+
 	public List<Interaction> getNewInteractionByPickTime(Interaction interaction);
 }
