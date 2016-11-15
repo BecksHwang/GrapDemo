@@ -30,10 +30,6 @@ public class GrapMethodUtil {
 	private Logger logger = Logger.getLogger(GrapMethodUtil.class);
 
 	public static void main(String[] args) throws UnsupportedEncodingException, MalformedURLException {
-		String url = "http://www.mod.gov.cn/shouye/2016-05/25/content_4664294.htm";
-		String ursourceURL = "http://www.mod.gov.cn/shouye/node_47102.htm";
-		URL sourceURL = new URL(ursourceURL);
-		System.out.println(buildURL(sourceURL, url));
 	}
 
 	/**

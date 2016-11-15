@@ -271,9 +271,5 @@ public class SendUrlUtil {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String url = "http://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html";
-		String html = null;
-		html = getHtmlByJousp(url);
-		System.out.println(html);
 	}
 }
