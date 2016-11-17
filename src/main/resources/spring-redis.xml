@@ -39,6 +39,14 @@
 				<bean class="redis.clients.jedis.JedisShardInfo">
 					<!-- 高级host方式url,带密码，DB，除了此方式还可重写 JedisShardInfo构造方法 -->
 					<constructor-arg name="host" value="${redis1.url}" />
+					<!-- redis无密码配置方式 -->
+					<!-- 
+					<bean class="redis.clients.jedis.JedisShardInfo">
+						<constructor-arg name="host" value="${redis1.host}" />
+						<constructor-arg name="port" value="${redis1.port}" />
+						<constructor-arg name="timeout" value="${redis1.timeout}" />
+					</bean>
+					--> 
 				</bean>
 			</list>
 		</constructor-arg>
