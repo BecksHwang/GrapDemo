@@ -3,8 +3,7 @@
 [![Maven](https://img.shields.io/badge/Maven-4.0.0-red.svg)](http://maven.apache.org/)
 [![Spring](https://img.shields.io/badge/Spring-4.1.4-yellowgreen.svg)](http://spring.io/)
 [![Mybatis](https://img.shields.io/badge/Mybatis-3.3.1-yellow.svg)](http://www.mybatis.org/)
-[![Redis](https://img.shields.io/badge/Redis-2.7.2-ff69b4.svg)]
-(http://redis.io/)
+[![Redis](https://img.shields.io/badge/Redis-2.7.2-ff69b4.svg)](http://redis.io/)
 
 
 ### Introduction
